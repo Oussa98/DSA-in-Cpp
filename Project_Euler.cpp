@@ -180,3 +180,166 @@ int main()
 
 }
 
+
+
+
+// ###############################################################
+
+
+	
+/*
+
+// problem 17
+
+If the numbers 1 to 5 are written out in words: 
+one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
+
+If all the numbers from 1 to 1000 (one thousand)
+ inclusive were written out in words, how many letters would be used?
+
+
+NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) 
+contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage.
+
+*/
+
+
+#include <iostream>
+
+using namespace std;
+
+
+
+
+int sum = 0;
+
+
+
+
+
+
+
+void ccc (int c)
+{
+        switch (c) 
+        {
+            case 1:
+            case 2:
+            case 6:
+                sum += 3; 
+                break;
+            case 4:
+            case 5:
+            case 9:
+                sum += 4;
+                break;
+            case 3:
+            case 7:
+            case 8:
+                sum += 5;
+                break;
+            case 0:
+                sum += 0;
+                break;
+        }
+}
+
+
+void bc(int b, int c)
+{
+    switch ((b*10)+c) 
+    {
+    case 10:
+        sum += 3; 
+        break;
+    case 11:
+    case 12:
+        sum += 6;
+        break;
+
+    case 13:
+    case 14:
+    case 18:
+    case 19:
+        sum += 8;
+        break;
+    case 15:
+    case 16:
+        sum += 7;
+        break;
+    case 17:
+        sum += 9;
+        break;
+    }
+
+
+}
+
+
+void bbbccc(int b,int c)
+{
+    switch (b*10)
+        {
+        case 10:
+            sum += 3;
+            break;
+        case 20:
+        case 30:
+        case 80:
+        case 90:
+            sum += 6;
+            break;
+        case 40:
+        case 50:
+        case 60:
+            sum += 5;
+            break;
+        case 70:
+            sum += 7;
+            break;
+        }
+        
+}
+
+
+int count(int n)
+{
+    int a = n/100;
+    int b = (n-(100*a))/10;
+    int c = n-(a*100)-(b*10);
+    
+    if (b == 0){ccc(c);}
+    else if (b == 1){bc(b,c);}
+    else if (b != 0 && b != 1)
+    {   
+        if (c == 0){bbbccc(b,c);}
+        else if (c != 0){bbbccc(b,c);ccc(c);}
+    }
+
+    if (a != 0)
+    {
+        if (b == 0 && c == 0){sum += 7; ccc(a);}
+        else if (b != 0 || c != 0){ccc(a);sum+= 10;}
+    }
+    return sum;
+}
+int total = 11;
+int main () 
+{
+
+for (int i = 0; i < 1000 ; i++)
+{
+    int ttt = count(i);
+    // cout << ttt << endl;
+    // cout<<sum;
+    sum = 0;
+    total += ttt;
+
+}
+
+cout << count(342) << endl;
+
+cout << total;
+}
+
+
