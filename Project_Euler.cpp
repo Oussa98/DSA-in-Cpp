@@ -342,4 +342,50 @@ cout << count(342) << endl;
 cout << total;
 }
 
+// #####################################
+// problem 19 //
+
+/*
+You are given the following information, but you may prefer to do some research for yourself.
+
+1 Jan 1900 was a Monday.
+Thirty days has September,
+April, June and November.
+All the rest have thirty-one,
+Saving February alone,
+Which has twenty-eight, rain or shine.
+And on leap years, twenty-nine.
+A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+*/
+#include <iostream>
+using namespace std;
+int months[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+int main()
+{
+    int y = 1;
+    int days = 1;
+    int result = 0;
+    while (y <= 100)
+    {
+        for (int m = 1; m < 13; m++ )
+        {
+            
+            if (m == 2)
+            {
+                if (y%4 == 0) {days += months[m-1] + 1;}
+                else {days += months[m-1];}
+            }
+            else {days += months[m-1];}
+            
+            if (days % 7 == 6){result++;}
+            
+        }
+        y++;
+        
+    }
+    cout << result;
+}
+
 
